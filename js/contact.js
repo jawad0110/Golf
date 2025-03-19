@@ -1,25 +1,28 @@
+// Initialize EmailJS
 document.addEventListener('DOMContentLoaded', function() {
-    // Initialize Map
-    const map = L.map('map').setView([31.9539, 35.9106], 13); // Coordinates for Amman
-
-    L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
-        attribution: '&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors'
-    }).addTo(map);
-
-    // Add marker for the resort
-    const marker = L.marker([31.9539, 35.9106]).addTo(map);
-    marker.bindPopup("<b>منتجع الجولف الفاخر</b><br>شارع زهران، عمان").openPopup();
+    // Initialize EmailJS first
+    (function() {
+        emailjs.init("EzkV5EcS1oJzaUCT5"); // Remove the object format and just pass the public key directly
+    })();
 
     // Form Validation
     const form = document.getElementById('contactForm');
     const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
-    const phoneRegex = /^(\+?962|0)?7[789]\d{7}$/;
+    const phoneRegex = /^[\+]?[(]?[0-9]{3}[)]?[-\s\.]?[0-9]{3}[-\s\.]?[0-9]{4,6}$/;  // International phone numbers
+
+    if (!form) {
+        console.error('Contact form not found!');
+        return;
+    }
+
+    // Remove the onsubmit attribute if it exists
+    form.removeAttribute('onsubmit');
 
     form.addEventListener('submit', function(e) {
         e.preventDefault();
+        console.log('Form submission started');
+        
         let isValid = true;
-
-        // Reset previous validation states
         clearValidationErrors();
 
         // Validate Name
@@ -36,7 +39,7 @@ document.addEventListener('DOMContentLoaded', function() {
 
         // Validate Phone
         if (!phoneRegex.test(form.phone.value)) {
-            showError(form.phone, 'الرجاء إدخال رقم جوال سعودي صحيح');
+            showError(form.phone, 'الرجاء إدخال رقم هاتف صحيح');
             isValid = false;
         }
 
@@ -53,7 +56,57 @@ document.addEventListener('DOMContentLoaded', function() {
         }
 
         if (isValid) {
-            submitForm(form);
+            const submitButton = form.querySelector('.btn-submit');
+            submitButton.disabled = true;
+            submitButton.classList.add('loading');
+
+            // Prepare the template parameters
+            const templateParams = {
+                to_name: "Resort Team",
+                from_name: form.querySelector('[name="from_name"]').value,
+                from_email: form.querySelector('[name="from_email"]').value,
+                phone: form.querySelector('[name="phone"]').value,
+                subject: form.querySelector('[name="subject"]').value,
+                message: form.querySelector('[name="message"]').value,
+                reply_to: form.querySelector('[name="from_email"]').value
+            };
+
+            console.log('Sending email with params:', templateParams);
+
+            // Send email using EmailJS with detailed error handling
+            emailjs.send("service_j29ijnd", "template_wdp7s4r", templateParams)
+                .then(function(response) {
+                    console.log('EmailJS SUCCESS:', response);
+                    showSuccessMessage();
+                    form.reset();
+                })
+                .catch(function(error) {
+                    console.error('EmailJS FAILED:', error);
+                    let errorMessage = 'عذراً، حدث خطأ أثناء إرسال النموذج. يرجى المحاولة مرة أخرى.';
+                    
+                    if (error && error.text) {
+                        console.log('Error details:', error.text);
+                        if (error.text.includes('Public Key is invalid')) {
+                            errorMessage = 'خطأ في تكوين النظام. يرجى الاتصال بمسؤول الموقع.';
+                        } else if (error.text.includes('template')) {
+                            errorMessage = 'خطأ في قالب البريد الإلكتروني. يرجى الاتصال بمسؤول الموقع.';
+                        }
+                    }
+
+                    const errorDiv = document.createElement('div');
+                    errorDiv.className = 'error-message global-error';
+                    errorDiv.textContent = errorMessage;
+                    form.insertBefore(errorDiv, form.firstChild);
+                })
+                .finally(function() {
+                    submitButton.disabled = false;
+                    submitButton.classList.remove('loading');
+                    
+                    setTimeout(() => {
+                        const messages = document.querySelectorAll('.success-message, .error-message.global-error');
+                        messages.forEach(msg => msg.remove());
+                    }, 5000);
+                });
         }
     });
 });
@@ -78,30 +131,6 @@ function clearValidationErrors() {
             error.remove();
         }
     });
-}
-
-// Submit Form
-function submitForm(form) {
-    const submitButton = form.querySelector('.btn-submit');
-    submitButton.classList.add('loading');
-    submitButton.disabled = true;
-
-    // Simulate form submission
-    setTimeout(() => {
-        // Here you would typically send the data to your server
-        showSuccessMessage();
-        submitButton.classList.remove('loading');
-        submitButton.disabled = false;
-        form.reset();
-
-        // Remove success message after 5 seconds
-        setTimeout(() => {
-            const successMessage = document.querySelector('.success-message');
-            if (successMessage) {
-                successMessage.remove();
-            }
-        }, 5000);
-    }, 2000);
 }
 
 // Show Success Message
