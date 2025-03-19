@@ -1,3 +1,8 @@
+// Initialize EmailJS with your public user ID
+(function(){
+    emailjs.init("EzkV5EcS1oJzaUCT5"); // Replace with your actual EmailJS user ID
+})();
+
 // Package Prices (in JOD)
 const packagePrices = {
     'gold': 450,     // Five Rounds Package
@@ -16,39 +21,8 @@ const packageNames = {
     'honeymoon': 'باقة شهر العسل'
 };
 
+// Initialize Flatpickr Date Pickers
 document.addEventListener('DOMContentLoaded', function() {
-    const form = document.getElementById('bookingForm');
-    const steps = document.querySelectorAll('.form-step');
-    const progressSteps = document.querySelectorAll('.progress-step');
-    const progressBar = document.querySelector('.progress-bar');
-    const progressInfo = document.querySelector('.progress-info');
-    const nextButtons = document.querySelectorAll('.btn-next');
-    const prevButtons = document.querySelectorAll('.btn-prev');
-    const submitButton = document.querySelector('.btn-submit');
-
-    let currentStep = 1;
-    const totalSteps = steps.length;
-
-    // Step information for progress info
-    const stepInfo = [
-        {
-            title: 'اختر برنامجك السياحي المفضل',
-            description: 'حدد البرنامج وتاريخ السفر وعدد المسافرين'
-        },
-        {
-            title: 'أدخل معلومات المسافر',
-            description: 'نحتاج إلى معلوماتك الشخصية لإتمام الحجز'
-        },
-        {
-            title: 'إتمام عملية الدفع',
-            description: 'ادفع بأمان باستخدام بطاقتك المفضلة'
-        },
-        {
-            title: 'تأكيد الحجز',
-            description: 'راجع تفاصيل حجزك قبل التأكيد النهائي'
-        }
-    ];
-
     // Initialize check-in date picker
     flatpickr("#checkIn", {
         minDate: "today",
@@ -76,228 +50,6 @@ document.addEventListener('DOMContentLoaded', function() {
 
     // Initialize form validation
     initializeFormValidation();
-
-    // Update progress bar
-    function updateProgress() {
-        // Update progress steps
-        progressSteps.forEach((step, idx) => {
-            if (idx + 1 < currentStep) {
-                step.classList.add('completed');
-                step.classList.remove('active');
-            } else if (idx + 1 === currentStep) {
-                step.classList.add('active');
-                step.classList.remove('completed');
-            } else {
-                step.classList.remove('completed', 'active');
-            }
-        });
-
-        // Update progress bar
-        progressBar.setAttribute('data-progress', currentStep);
-
-        // Update progress info
-        const info = stepInfo[currentStep - 1];
-        progressInfo.querySelector('h3').textContent = info.title;
-        progressInfo.querySelector('p').textContent = info.description;
-    }
-
-    // Show current step
-    function showStep(stepNumber) {
-        steps.forEach(step => {
-            step.classList.remove('active');
-            if (parseInt(step.dataset.step) === stepNumber) {
-                step.classList.add('active');
-            }
-        });
-        currentStep = stepNumber;
-        updateProgress();
-        window.scrollTo({ top: 0, behavior: 'smooth' });
-    }
-
-    // Validate current step
-    function validateStep(stepNumber) {
-        const currentStepElement = document.querySelector(`.form-step[data-step="${stepNumber}"]`);
-        const inputs = currentStepElement.querySelectorAll('input[required], select[required]');
-        let isValid = true;
-
-        // Remove all existing error messages
-        currentStepElement.querySelectorAll('.error-message').forEach(el => el.remove());
-
-        inputs.forEach(input => {
-            if (!input.value) {
-                isValid = false;
-                input.classList.add('error');
-                
-                // Add error message
-                const errorMessage = document.createElement('div');
-                errorMessage.className = 'error-message';
-                errorMessage.textContent = 'هذا الحقل مطلوب';
-                input.parentNode.appendChild(errorMessage);
-            } else {
-                input.classList.remove('error');
-            }
-        });
-
-        // Validate email format in step 2
-        if (stepNumber === 2) {
-            const emailInput = document.getElementById('email');
-            const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
-            
-            if (emailInput.value && !emailRegex.test(emailInput.value)) {
-                isValid = false;
-                emailInput.classList.add('error');
-                
-                // Remove existing error message if any
-                const existingError = emailInput.parentNode.querySelector('.error-message');
-                if (existingError) existingError.remove();
-                
-                // Add error message
-                const errorMessage = document.createElement('div');
-                errorMessage.className = 'error-message';
-                errorMessage.textContent = 'الرجاء إدخال بريد إلكتروني صحيح';
-                emailInput.parentNode.appendChild(errorMessage);
-            }
-        }
-
-        return isValid;
-    }
-
-    // Update booking summary
-    function updateSummary() {
-        const package = document.getElementById('package').value;
-        const travelDate = document.getElementById('travel-date').value;
-        const travelers = document.getElementById('travelers').value;
-        const packagePrice = packagePrices[package] || 0;
-        const totalPrice = packagePrice * parseInt(travelers || 0);
-
-        // Get package name in Arabic
-        const packageName = packageNames[package] || document.querySelector(`#package option[value="${package}"]`).textContent;
-
-        // Format date in Arabic
-        const formattedDate = travelDate ? new Date(travelDate).toLocaleDateString('ar-SA', {
-            weekday: 'long',
-            year: 'numeric',
-            month: 'long',
-            day: 'numeric'
-        }) : '';
-
-        // Update summary in payment step
-        document.getElementById('summary-package').textContent = packageName;
-        document.getElementById('summary-date').textContent = formattedDate;
-        document.getElementById('summary-travelers').textContent = travelers;
-        document.getElementById('summary-total').textContent = `${totalPrice} دينار`;
-
-        // Update confirmation step
-        document.getElementById('confirm-name').textContent = document.getElementById('fullname').value;
-        document.getElementById('confirm-email').textContent = document.getElementById('email').value;
-        document.getElementById('confirm-phone').textContent = document.getElementById('phone').value;
-        document.getElementById('confirm-package').textContent = packageName;
-        document.getElementById('confirm-date').textContent = formattedDate;
-        document.getElementById('confirm-travelers').textContent = travelers;
-        document.getElementById('confirm-total').textContent = `${totalPrice} دينار`;
-    }
-
-    // Handle next button clicks
-    nextButtons.forEach(button => {
-        button.addEventListener('click', () => {
-            if (validateStep(currentStep)) {
-                if (currentStep < totalSteps) {
-                    updateSummary();
-                    showStep(currentStep + 1);
-                }
-            }
-        });
-    });
-
-    // Handle previous button clicks
-    prevButtons.forEach(button => {
-        button.addEventListener('click', () => {
-            if (currentStep > 1) {
-                showStep(currentStep - 1);
-            }
-        });
-    });
-
-    // Handle form submission
-    form.addEventListener('submit', function(e) {
-        e.preventDefault();
-        if (validateStep(currentStep)) {
-            // Show loading state
-            const submitBtn = document.querySelector('.btn-submit');
-            submitBtn.classList.add('loading');
-            submitBtn.disabled = true;
-            
-            // Simulate server request (remove in production)
-            setTimeout(() => {
-                // Generate booking reference
-                const bookingRef = 'BK' + Date.now().toString().slice(-6);
-                document.getElementById('booking-reference').textContent = bookingRef;
-
-                // Hide form and show success message
-                form.style.display = 'none';
-                document.querySelector('.booking-success').style.display = 'block';
-
-                // You would typically send the booking data to your server here
-                const bookingData = {
-                    package: document.getElementById('package').value,
-                    travelDate: document.getElementById('travel-date').value,
-                    travelers: document.getElementById('travelers').value,
-                    fullname: document.getElementById('fullname').value,
-                    email: document.getElementById('email').value,
-                    phone: document.getElementById('phone').value,
-                    specialRequests: document.getElementById('special-requests').value,
-                    bookingReference: bookingRef
-                };
-                console.log('Booking Data:', bookingData);
-                
-                // Reset loading state
-                submitBtn.classList.remove('loading');
-                submitBtn.disabled = false;
-            }, 1500);
-        }
-    });
-
-    // Add input validation styling
-    const formControls = document.querySelectorAll('.form-control');
-    formControls.forEach(input => {
-        input.addEventListener('input', function() {
-            if (this.value) {
-                this.classList.remove('error');
-                const errorMessage = this.parentNode.querySelector('.error-message');
-                if (errorMessage) errorMessage.remove();
-            }
-        });
-    });
-
-    // Initialize date input with minimum date of today
-    const dateInput = document.getElementById('travel-date');
-    const today = new Date().toISOString().split('T')[0];
-    dateInput.min = today;
-
-    // Format card number input
-    const cardNumberInput = document.getElementById('card-number');
-    cardNumberInput.addEventListener('input', function(e) {
-        let value = e.target.value.replace(/\D/g, '');
-        value = value.replace(/(.{4})/g, '$1 ').trim();
-        e.target.value = value;
-    });
-
-    // Format expiry date input
-    const expiryInput = document.getElementById('card-expiry');
-    expiryInput.addEventListener('input', function(e) {
-        let value = e.target.value.replace(/\D/g, '');
-        if (value.length > 2) {
-            value = value.slice(0,2) + '/' + value.slice(2,4);
-        }
-        e.target.value = value;
-    });
-
-    // Format CVV input
-    const cvvInput = document.getElementById('card-cvv');
-    cvvInput.addEventListener('input', function(e) {
-        let value = e.target.value.replace(/\D/g, '');
-        e.target.value = value.slice(0,3);
-    });
 });
 
 // Update Booking Summary
@@ -427,7 +179,7 @@ function initializeFormValidation() {
 
         // Validate Phone
         if (!phoneRegex.test(form.phone.value)) {
-            showError(form.phone, 'الرجاء إدخال رقم هاتف أردني صحيح');
+            showError(form.phone, 'الرجاء إدخال رقم هاتف صحيح');
             isValid = false;
         }
 
@@ -482,18 +234,18 @@ async function submitForm(form) {
     try {
         // Send email to customer
         const customerEmailResponse = await emailjs.send(
-            "service_j29ijnd",
-            "template_aubmy7p",
+            "service_j29ijnd", // Ensure this is correct
+            "template_aubmy7p", // Ensure this is correct
             {
-                to_name: bookingDetails.name,
-                to_email: bookingDetails.email,
-                booking_package: bookingDetails.package,
+                name: bookingDetails.name,
+                email: bookingDetails.email,
+                phone: bookingDetails.phone,
+                package: bookingDetails.package,
                 check_in: bookingDetails.checkIn,
                 check_out: bookingDetails.checkOut,
                 nights: bookingDetails.nights,
                 guests: bookingDetails.guests,
                 total_price: bookingDetails.totalPrice,
-                phone: bookingDetails.phone,
                 special_requests: bookingDetails.specialRequests,
                 booking_date: new Date().toLocaleDateString('ar-JO')
             }
@@ -502,18 +254,23 @@ async function submitForm(form) {
         if (customerEmailResponse.status === 200) {
             // Send notification to admin
             const adminEmailResponse = await emailjs.send(
-                "service_j29ijnd",
-                "template_aubmy7p",
+                "service_j29ijnd", // Ensure this is correct
+                "template_aubmy7p", // Ensure this is correct
                 {
+                    name: "Admin",
+                    email: "admin@luxurygolfresort.com",
+                    phone: bookingDetails.phone,
                     customer_name: bookingDetails.name,
                     customer_email: bookingDetails.email,
-                    booking_package: bookingDetails.package,
+                    customer_phone: bookingDetails.phone,
+                    package: bookingDetails.package,
                     check_in: bookingDetails.checkIn,
                     check_out: bookingDetails.checkOut,
+                    nights: bookingDetails.nights,
                     guests: bookingDetails.guests,
-                    phone: bookingDetails.phone,
+                    total_price: bookingDetails.totalPrice,
                     special_requests: bookingDetails.specialRequests,
-                    total_price: bookingDetails.totalPrice
+                    booking_date: new Date().toLocaleDateString('ar-JO')
                 }
             );
 
