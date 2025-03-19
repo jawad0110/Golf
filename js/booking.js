@@ -482,8 +482,8 @@ async function submitForm(form) {
     try {
         // Send email to customer
         const customerEmailResponse = await emailjs.send(
-            "service_snbhjih",
-            "template_qy4ngln",
+            "service_j29ijnd",
+            "template_aubmy7p",
             {
                 to_name: bookingDetails.name,
                 to_email: bookingDetails.email,
@@ -502,8 +502,8 @@ async function submitForm(form) {
         if (customerEmailResponse.status === 200) {
             // Send notification to admin
             const adminEmailResponse = await emailjs.send(
-                "service_snbhjih",
-                "template_qy4ngln",
+                "service_j29ijnd",
+                "template_aubmy7p",
                 {
                     customer_name: bookingDetails.name,
                     customer_email: bookingDetails.email,
