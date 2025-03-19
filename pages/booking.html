@@ -1,0 +1,253 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>احجز الآن | منتجع الجولف الفاخر</title>
+    <link rel="stylesheet" href="../css/style.css">
+    <link rel="stylesheet" href="../css/booking.css">
+    <!-- Font Awesome -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+    <!-- Google Fonts -->
+    <link href="https://fonts.googleapis.com/css2?family=Tajawal:wght@300;400;500;700&display=swap" rel="stylesheet">
+    <!-- Flatpickr for Date Picker -->
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/flatpickr/dist/flatpickr.min.css">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/flatpickr/dist/themes/material_green.css">
+    <!-- EmailJS -->
+    <script type="text/javascript" src="https://cdn.jsdelivr.net/npm/@emailjs/browser@3/dist/email.min.js"></script>
+    <script type="text/javascript">
+        (function() {
+            // Initialize EmailJS with your public key
+            emailjs.init("QAV0rp-C7L1jRwMT_");
+        })();
+    </script>
+</head>
+<body>
+    <header class="main-header">
+        <nav class="nav-container">
+            <div class="logo">
+                <a href="../index.html">
+                    <img src="../images/logo.png" alt="شعار منتجع الجولف الفاخر">
+                </a>
+            </div>
+            <div class="nav-links">
+                <a href="../index.html">الرئيسية</a>
+                <a href="about.html">عن المنتجع</a>
+                <a href="facilities.html">المرافق</a>
+                <a href="packages.html">الحزم والعروض</a>
+                <a href="booking.html" class="active">احجز الآن</a>
+                <a href="gallery.html">معرض الصور</a>
+                <a href="faq.html">الأسئلة الشائعة</a>
+                <a href="contact.html">اتصل بنا</a>
+            </div>
+            <div class="nav-cta">
+                <a href="booking.html" class="btn-book">احجز الآن</a>
+            </div>
+            <button class="mobile-menu-btn" aria-label="القائمة">☰</button>
+        </nav>
+    </header>
+
+    <main>
+        <section class="page-header">
+            <div class="container">
+                <h1>احجز إقامتك</h1>
+                <nav class="breadcrumb">
+                    <a href="../index.html">الرئيسية</a> / 
+                    <span>احجز الآن</span>
+                </nav>
+            </div>
+        </section>
+
+        <section class="booking-section">
+            <div class="container">
+                <div class="booking-container">
+                    <div class="booking-info">
+                        <h2>معلومات الحجز</h2>
+                        <p>اختر الباقة المناسبة وأكمل معلومات الحجز. سيتواصل معك فريقنا لتأكيد حجزك.</p>
+                        
+                        <div class="booking-features">
+                            <div class="feature">
+                                <i class="fas fa-check-circle"></i>
+                                <span>تأكيد فوري للحجز</span>
+                            </div>
+                            <div class="feature">
+                                <i class="fas fa-lock"></i>
+                                <span>دفع آمن</span>
+                            </div>
+                            <div class="feature">
+                                <i class="fas fa-calendar-alt"></i>
+                                <span>مرونة في تغيير المواعيد</span>
+                            </div>
+                        </div>
+                    </div>
+
+                    <form id="bookingForm" class="booking-form">
+                        <div class="form-group">
+                            <label for="package">اختر الباقة</label>
+                            <select id="package" name="package" required>
+                                <option value="">-- اختر الباقة --</option>
+                                <option value="gold">باقة الخمس جولات</option>
+                                <option value="silver">باقة الجولة الثلاثية</option>
+                                <option value="bronze">باقة استراحة استجمام</option>
+                                <option value="family">عرض العائلة</option>
+                                <option value="honeymoon">باقة شهر العسل</option>
+                            </select>
+                        </div>
+
+                        <div class="form-row">
+                            <div class="form-group">
+                                <label for="checkIn">تاريخ الوصول</label>
+                                <input type="text" id="checkIn" name="checkIn" class="datepicker" required>
+                            </div>
+                            <div class="form-group">
+                                <label for="checkOut">تاريخ المغادرة</label>
+                                <input type="text" id="checkOut" name="checkOut" class="datepicker" required>
+                            </div>
+                        </div>
+
+                        <div class="form-row">
+                            <div class="form-group">
+                                <label for="adults">عدد البالغين</label>
+                                <select id="adults" name="adults" required>
+                                    <option value="1">1</option>
+                                    <option value="2" selected>2</option>
+                                    <option value="3">3</option>
+                                    <option value="4">4</option>
+                                </select>
+                            </div>
+                            <div class="form-group">
+                                <label for="children">عدد الأطفال</label>
+                                <select id="children" name="children">
+                                    <option value="0">0</option>
+                                    <option value="1">1</option>
+                                    <option value="2">2</option>
+                                    <option value="3">3</option>
+                                </select>
+                            </div>
+                        </div>
+
+                        <div class="form-group">
+                            <label for="name">الاسم الكامل</label>
+                            <input type="text" id="name" name="name" required>
+                        </div>
+
+                        <div class="form-row">
+                            <div class="form-group">
+                                <label for="email">البريد الإلكتروني</label>
+                                <input type="email" id="email" name="email" required>
+                            </div>
+                            <div class="form-group">
+                                <label for="phone">رقم الجوال</label>
+                                <input type="tel" id="phone" name="phone" required>
+                            </div>
+                        </div>
+
+                        <div class="form-group">
+                            <label for="specialRequests">متطلبات خاصة</label>
+                            <textarea id="specialRequests" name="specialRequests" rows="4"></textarea>
+                        </div>
+
+                        <div class="form-group terms">
+                            <label class="checkbox-container">
+                                <input type="checkbox" required>
+                                <span class="checkmark"></span>
+                                أوافق على الشروط والأحكام
+                            </label>
+                        </div>
+
+                        <button type="submit" class="btn-submit">تأكيد الحجز</button>
+                    </form>
+                </div>
+
+                <div class="booking-summary" id="bookingSummary">
+                    <h3>ملخص الحجز</h3>
+                    <div class="summary-content">
+                        <div class="summary-item">
+                            <span>الباقة المختارة:</span>
+                            <span id="selectedPackage">-</span>
+                        </div>
+                        <div class="summary-item">
+                            <span>تاريخ الوصول:</span>
+                            <span id="selectedCheckIn">-</span>
+                        </div>
+                        <div class="summary-item">
+                            <span>تاريخ المغادرة:</span>
+                            <span id="selectedCheckOut">-</span>
+                        </div>
+                        <div class="summary-item">
+                            <span>عدد الليالي:</span>
+                            <span id="nightsCount">-</span>
+                        </div>
+                        <div class="summary-item">
+                            <span>عدد الضيوف:</span>
+                            <span id="guestsCount">-</span>
+                        </div>
+                        <div class="summary-total">
+                            <span>الإجمالي:</span>
+                            <span id="totalPrice">-</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <section class="booking-info-section">
+            <div class="container">
+                <div class="info-grid">
+                    <div class="info-card">
+                        <i class="fas fa-clock"></i>
+                        <h3>مواعيد تسجيل الدخول والخروج</h3>
+                        <p>تسجيل الدخول: 2:00 مساءً<br>تسجيل الخروج: 12:00 ظهراً</p>
+                    </div>
+                    <div class="info-card">
+                        <i class="fas fa-credit-card"></i>
+                        <h3>سياسة الدفع</h3>
+                        <p>يتطلب تأمين 20% من قيمة الحجز<br>الدفع الكامل عند الوصول</p>
+                    </div>
+                    <div class="info-card">
+                        <i class="fas fa-ban"></i>
+                        <h3>سياسة الإلغاء</h3>
+                        <p>إلغاء مجاني قبل 48 ساعة<br>رسوم على الإلغاء المتأخر</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+    </main>
+
+    <footer class="main-footer">
+        <div class="container">
+            <div class="footer-grid">
+                <div class="footer-info">
+                    <img src="../images/logo-white.png" alt="شعار المنتجع" class="footer-logo">
+                    <p>منتجع الجولف الفاخر - وجهتك المثالية للاسترخاء والمتعة</p>
+                </div>
+                <div class="footer-links">
+                    <h4>روابط سريعة</h4>
+                    <a href="about.html">عن المنتجع</a>
+                    <a href="facilities.html">المرافق</a>
+                    <a href="packages.html">الحزم والعروض</a>
+                    <a href="contact.html">اتصل بنا</a>
+                </div>
+                <div class="footer-contact">
+                    <h4>تواصل معنا</h4>
+                    <p><i class="fas fa-phone"></i> +966 XX XXX XXXX</p>
+                    <p><i class="fas fa-envelope"></i> info@luxurygolfresort.com</p>
+                    <div class="social-links">
+                        <a href="https://www.facebook.com/luxurygolfresort" target="_blank"><i class="fab fa-facebook"></i></a>
+                        <a href="https://www.instagram.com/luxurygolfresort" target="_blank"><i class="fab fa-instagram"></i></a>
+                        <a href="https://twitter.com/luxurygolfresort" target="_blank"><i class="fab fa-twitter"></i></a>
+                    </div>
+                </div>
+            </div>
+            <div class="footer-bottom">
+                <p>&copy; 2024 منتجع الجولف الفاخر. جميع الحقوق محفوظة</p>
+            </div>
+        </div>
+    </footer>
+
+    <script src="https://cdn.jsdelivr.net/npm/flatpickr"></script>
+    <script src="../js/script.js"></script>
+    <script src="../js/main.js"></script>
+    <script src="../js/booking.js"></script>
+</body>
+</html> 

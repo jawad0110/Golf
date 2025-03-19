@@ -1,0 +1,239 @@
+/* Page Header */
+.page-header {
+    background-image: linear-gradient(rgba(0, 0, 0, 0.5), rgba(0, 0, 0, 0.5)), url('../images/facilities-header.jpg');
+    background-size: cover;
+    background-position: center;
+    height: 300px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    text-align: center;
+    color: var(--white);
+    margin-top: 80px;
+}
+
+.breadcrumb {
+    margin-top: 1rem;
+    font-size: 1.1rem;
+}
+
+.breadcrumb a {
+    color: var(--white);
+    text-decoration: none;
+    transition: var(--transition);
+}
+
+.breadcrumb a:hover {
+    color: var(--secondary-color);
+}
+
+/* Facilities Sections */
+.golf-courses,
+.accommodation,
+.dining,
+.clubs,
+.golf-services,
+.pro-shop,
+.additional-facilities {
+    padding: 5rem 0;
+}
+
+.golf-courses,
+.clubs,
+.pro-shop {
+    background-color: var(--light-bg);
+}
+
+/* Grid Layouts */
+.facilities-grid {
+    display: grid;
+    gap: 3rem;
+    margin-top: 3rem;
+}
+
+.golf-courses .facilities-grid {
+    grid-template-columns: repeat(3, 1fr);
+}
+
+.clubs .facilities-grid,
+.accommodation .facilities-grid,
+.dining .facilities-grid,
+.golf-services .facilities-grid,
+.pro-shop .facilities-grid,
+.additional-facilities .facilities-grid {
+    grid-template-columns: repeat(2, 1fr);
+}
+
+/* Facility Cards */
+.facility-card {
+    background-color: var(--white);
+    border-radius: 10px;
+    overflow: hidden;
+    box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
+    transition: var(--transition);
+    opacity: 0;
+    transform: translateY(20px);
+    animation: fadeIn 0.6s ease-out forwards;
+}
+
+.facility-card:hover {
+    transform: translateY(-10px);
+    box-shadow: 0 8px 25px rgba(0, 0, 0, 0.15);
+}
+
+.facility-card img {
+    width: 100%;
+    height: 300px;
+    object-fit: cover;
+}
+
+.facility-content {
+    padding: 2rem;
+}
+
+.facility-content h3 {
+    color: var(--primary-color);
+    font-size: 1.5rem;
+    margin-bottom: 1rem;
+}
+
+.facility-content p {
+    color: var(--text-color);
+    margin-bottom: 1.5rem;
+    line-height: 1.6;
+}
+
+/* Facility Features List */
+.facility-features {
+    list-style: none;
+    padding: 0;
+}
+
+.facility-features li {
+    display: flex;
+    align-items: center;
+    margin-bottom: 0.5rem;
+    color: var(--text-color);
+}
+
+.facility-features i {
+    color: var(--secondary-color);
+    margin-left: 0.5rem;
+    font-size: 0.9rem;
+}
+
+/* Animation Delays */
+.golf-courses .facility-card:nth-child(1) { animation-delay: 0.2s; }
+.golf-courses .facility-card:nth-child(2) { animation-delay: 0.4s; }
+.golf-courses .facility-card:nth-child(3) { animation-delay: 0.6s; }
+
+.clubs .facility-card:nth-child(1) { animation-delay: 0.2s; }
+.clubs .facility-card:nth-child(2) { animation-delay: 0.4s; }
+
+.golf-services .facility-card:nth-child(1) { animation-delay: 0.2s; }
+.golf-services .facility-card:nth-child(2) { animation-delay: 0.4s; }
+
+.pro-shop .facility-card:nth-child(1) { animation-delay: 0.2s; }
+.pro-shop .facility-card:nth-child(2) { animation-delay: 0.4s; }
+
+.accommodation .facility-card:nth-child(1) { animation-delay: 0.2s; }
+.accommodation .facility-card:nth-child(2) { animation-delay: 0.4s; }
+
+.dining .facility-card:nth-child(1) { animation-delay: 0.2s; }
+.dining .facility-card:nth-child(2) { animation-delay: 0.4s; }
+
+.additional-facilities .facility-card:nth-child(1) { animation-delay: 0.2s; }
+.additional-facilities .facility-card:nth-child(2) { animation-delay: 0.4s; }
+
+/* Hover Effects */
+.facility-card img {
+    transition: transform 0.5s ease;
+}
+
+.facility-card:hover img {
+    transform: scale(1.05);
+}
+
+/* Responsive Design */
+@media (max-width: 1200px) {
+    .golf-courses .facilities-grid {
+        grid-template-columns: repeat(2, 1fr);
+    }
+}
+
+@media (max-width: 992px) {
+    .facilities-grid,
+    .golf-courses .facilities-grid,
+    .clubs .facilities-grid,
+    .golf-services .facilities-grid,
+    .pro-shop .facilities-grid {
+        grid-template-columns: 1fr;
+        gap: 2rem;
+    }
+
+    .facility-card {
+        max-width: 600px;
+        margin: 0 auto;
+    }
+}
+
+@media (max-width: 768px) {
+    .page-header {
+        height: 200px;
+    }
+
+    .facility-card img {
+        height: 250px;
+    }
+
+    .facility-content {
+        padding: 1.5rem;
+    }
+
+    .facility-content h3 {
+        font-size: 1.3rem;
+    }
+}
+
+/* Section Transitions */
+.golf-courses,
+.accommodation,
+.dining,
+.clubs,
+.golf-services,
+.pro-shop,
+.additional-facilities {
+    position: relative;
+    overflow: hidden;
+}
+
+.golf-courses::after,
+.dining::after {
+    content: '';
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    height: 50px;
+    background: linear-gradient(to bottom, transparent, var(--white));
+    pointer-events: none;
+}
+
+/* Custom Scrollbar for Facility Content */
+.facility-content {
+    scrollbar-width: thin;
+    scrollbar-color: var(--primary-color) var(--light-bg);
+}
+
+.facility-content::-webkit-scrollbar {
+    width: 6px;
+}
+
+.facility-content::-webkit-scrollbar-track {
+    background: var(--light-bg);
+}
+
+.facility-content::-webkit-scrollbar-thumb {
+    background-color: var(--primary-color);
+    border-radius: 3px;
+} 

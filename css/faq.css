@@ -1,0 +1,223 @@
+/* Page Header */
+.page-header {
+    background-image: linear-gradient(rgba(0, 0, 0, 0.5), rgba(0, 0, 0, 0.5)), url('../images/faq-header.jpg');
+    background-size: cover;
+    background-position: center;
+    height: 300px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    text-align: center;
+    color: var(--white);
+    margin-top: 80px;
+}
+
+.breadcrumb {
+    margin-top: 1rem;
+    font-size: 1.1rem;
+}
+
+.breadcrumb a {
+    color: var(--white);
+    text-decoration: none;
+    transition: var(--transition);
+}
+
+.breadcrumb a:hover {
+    color: var(--secondary-color);
+}
+
+/* FAQ Section */
+.faq-section {
+    padding: 5rem 0;
+    background-color: var(--light-bg);
+}
+
+/* FAQ Categories */
+.faq-categories {
+    display: flex;
+    justify-content: center;
+    gap: 1rem;
+    margin-bottom: 3rem;
+    flex-wrap: wrap;
+}
+
+.category-btn {
+    padding: 0.8rem 1.5rem;
+    border: none;
+    border-radius: 5px;
+    background-color: var(--white);
+    color: var(--text-color);
+    font-size: 1rem;
+    cursor: pointer;
+    transition: var(--transition);
+}
+
+.category-btn:hover {
+    background-color: var(--primary-color);
+    color: var(--white);
+}
+
+.category-btn.active {
+    background-color: var(--primary-color);
+    color: var(--white);
+}
+
+/* FAQ Container */
+.faq-container {
+    max-width: 800px;
+    margin: 0 auto;
+}
+
+.faq-category {
+    display: none;
+}
+
+.faq-category.active {
+    display: block;
+    animation: fadeIn 0.5s ease-out;
+}
+
+/* FAQ Items */
+.faq-item {
+    background-color: var(--white);
+    border-radius: 10px;
+    margin-bottom: 1rem;
+    box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+    overflow: hidden;
+}
+
+.faq-question {
+    padding: 1.5rem;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    cursor: pointer;
+    transition: var(--transition);
+}
+
+.faq-question:hover {
+    background-color: rgba(139, 115, 85, 0.05);
+}
+
+.faq-question h3 {
+    margin: 0;
+    font-size: 1.1rem;
+    color: var(--primary-color);
+}
+
+.faq-question i {
+    color: var(--secondary-color);
+    transition: transform 0.3s ease;
+}
+
+.faq-item.active .faq-question i {
+    transform: rotate(180deg);
+}
+
+.faq-answer {
+    max-height: 0;
+    overflow: hidden;
+    transition: max-height 0.3s ease-out;
+    padding: 0 1.5rem;
+}
+
+.faq-item.active .faq-answer {
+    max-height: 200px;
+    padding: 0 1.5rem 1.5rem;
+}
+
+.faq-answer p {
+    margin: 0;
+    line-height: 1.6;
+    color: var(--text-color);
+}
+
+/* Contact CTA Section */
+.contact-cta {
+    padding: 5rem 0;
+    text-align: center;
+    background-color: var(--white);
+}
+
+.contact-cta h2 {
+    color: var(--primary-color);
+    margin-bottom: 1rem;
+}
+
+.contact-cta p {
+    color: var(--text-color);
+    margin-bottom: 2rem;
+}
+
+.contact-cta .btn-primary {
+    display: inline-block;
+    padding: 1rem 2rem;
+    background-color: var(--primary-color);
+    color: var(--white);
+    text-decoration: none;
+    border-radius: 5px;
+    transition: var(--transition);
+}
+
+.contact-cta .btn-primary:hover {
+    background-color: var(--secondary-color);
+    transform: translateY(-2px);
+}
+
+/* Animations */
+@keyframes fadeIn {
+    from {
+        opacity: 0;
+        transform: translateY(20px);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+/* Responsive Design */
+@media (max-width: 768px) {
+    .page-header {
+        height: 200px;
+    }
+
+    .faq-categories {
+        flex-direction: column;
+        align-items: stretch;
+        padding: 0 1rem;
+    }
+
+    .category-btn {
+        width: 100%;
+    }
+
+    .faq-container {
+        padding: 0 1rem;
+    }
+
+    .faq-question h3 {
+        font-size: 1rem;
+        padding-left: 1rem;
+    }
+}
+
+/* Custom Scrollbar */
+.faq-answer {
+    scrollbar-width: thin;
+    scrollbar-color: var(--primary-color) var(--light-bg);
+}
+
+.faq-answer::-webkit-scrollbar {
+    width: 6px;
+}
+
+.faq-answer::-webkit-scrollbar-track {
+    background: var(--light-bg);
+}
+
+.faq-answer::-webkit-scrollbar-thumb {
+    background-color: var(--primary-color);
+    border-radius: 3px;
+} 

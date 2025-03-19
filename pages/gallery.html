@@ -1,0 +1,188 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>معرض الصور | منتجع الجولف الفاخر</title>
+    <link rel="stylesheet" href="../css/style.css">
+    <link rel="stylesheet" href="../css/gallery.css">
+    <!-- Font Awesome -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+    <!-- Google Fonts -->
+    <link href="https://fonts.googleapis.com/css2?family=Tajawal:wght@300;400;500;700&display=swap" rel="stylesheet">
+</head>
+<body>
+    <header class="main-header">
+        <nav class="nav-container">
+            <div class="logo">
+                <a href="../index.html">
+                    <img src="../images/logo.png" alt="شعار منتجع الجولف الفاخر">
+                </a>
+            </div>
+            <div class="nav-links">
+                <a href="../index.html">الرئيسية</a>
+                <a href="about.html">عن المنتجع</a>
+                <a href="facilities.html">المرافق</a>
+                <a href="packages.html">الحزم والعروض</a>
+                <a href="booking.html">احجز الآن</a>
+                <a href="gallery.html" class="active">معرض الصور</a>
+                <a href="faq.html">الأسئلة الشائعة</a>
+                <a href="contact.html">اتصل بنا</a>
+            </div>
+            <div class="nav-cta">
+                <a href="booking.html" class="btn-book">احجز الآن</a>
+            </div>
+            <button class="mobile-menu-btn" aria-label="القائمة">☰</button>
+        </nav>
+    </header>
+
+    <main>
+        <section class="page-header">
+            <div class="container">
+                <h1>معرض الصور</h1>
+                <nav class="breadcrumb">
+                    <a href="../index.html">الرئيسية</a> / 
+                    <span>معرض الصور</span>
+                </nav>
+            </div>
+        </section>
+
+        <section class="gallery-section">
+            <div class="container">
+                <div class="gallery-filters">
+                    <button class="filter-btn active" data-filter="all">الكل</button>
+                    <button class="filter-btn" data-filter="golf-courses">ملاعب الجولف</button>
+                    <button class="filter-btn" data-filter="facilities">المرافق</button>
+                    <button class="filter-btn" data-filter="accommodation">الإقامة</button>
+                    <button class="filter-btn" data-filter="dining">المطاعم</button>
+                    <button class="filter-btn" data-filter="events">الفعاليات</button>
+                </div>
+
+                <div class="gallery-grid">
+                    <!-- Golf Courses -->
+                    <div class="gallery-item" data-category="golf-courses">
+                        <img src="../images/golf-1.jpg" alt="ملعب البحر">
+                        <div class="gallery-overlay">
+                            <h3>ملعب البحر</h3>
+                            <p>إطلالة خلابة على البحر</p>
+                        </div>
+                    </div>
+                    <div class="gallery-item" data-category="golf-courses">
+                        <img src="../images/golf-2.jpg" alt="الملعب الرئيسي">
+                        <div class="gallery-overlay">
+                            <h3>الملعب الرئيسي</h3>
+                            <p>18 حفرة بتصميم عالمي</p>
+                        </div>
+                    </div>
+                    <div class="gallery-item" data-category="golf-courses">
+                        <img src="../images/golf-3.jpg" alt="ملعب الصحراء">
+                        <div class="gallery-overlay">
+                            <h3>ملعب الصحراء</h3>
+                            <p>تحدي فريد وسط الكثبان الرملية</p>
+                        </div>
+                    </div>
+
+                    <!-- Facilities -->
+                    <div class="gallery-item" data-category="facilities">
+                        <img src="../images/facility-1.jpg" alt="منطقة التدريب">
+                        <div class="gallery-overlay">
+                            <h3>منطقة التدريب</h3>
+                            <p>مرافق تدريب متطورة</p>
+                        </div>
+                    </div>
+                    <div class="gallery-item" data-category="facilities">
+                        <img src="../images/facility-2.jpg" alt="النادي الرياضي">
+                        <div class="gallery-overlay">
+                            <h3>النادي الرياضي</h3>
+                            <p>مرافق رياضية متكاملة</p>
+                        </div>
+                    </div>
+
+                    <!-- Accommodation -->
+                    <div class="gallery-item" data-category="accommodation">
+                        <img src="../images/room-1.jpg" alt="الجناح الملكي">
+                        <div class="gallery-overlay">
+                            <h3>الجناح الملكي</h3>
+                            <p>فخامة وإطلالة مميزة</p>
+                        </div>
+                    </div>
+                    <div class="gallery-item" data-category="accommodation">
+                        <img src="../images/room-2.jpg" alt="غرفة ديلوكس">
+                        <div class="gallery-overlay">
+                            <h3>غرفة ديلوكس</h3>
+                            <p>راحة وأناقة</p>
+                        </div>
+                    </div>
+
+                    <!-- Dining -->
+                    <div class="gallery-item" data-category="dining">
+                        <img src="../images/dining-1.jpg" alt="المطعم الرئيسي">
+                        <div class="gallery-overlay">
+                            <h3>المطعم الرئيسي</h3>
+                            <p>مأكولات عالمية فاخرة</p>
+                        </div>
+                    </div>
+                    <div class="gallery-item" data-category="dining">
+                        <img src="../images/dining-2.jpg" alt="كافيه البحر">
+                        <div class="gallery-overlay">
+                            <h3>كافيه البحر</h3>
+                            <p>إطلالة ساحرة مع قهوة مميزة</p>
+                        </div>
+                    </div>
+
+                    <!-- Events -->
+                    <div class="gallery-item" data-category="events">
+                        <img src="../images/event-1.jpg" alt="بطولة الجولف">
+                        <div class="gallery-overlay">
+                            <h3>بطولة الجولف</h3>
+                            <p>فعاليات رياضية عالمية</p>
+                        </div>
+                    </div>
+                    <div class="gallery-item" data-category="events">
+                        <img src="../images/event-2.jpg" alt="حفل عشاء">
+                        <div class="gallery-overlay">
+                            <h3>حفل عشاء</h3>
+                            <p>مناسبات خاصة</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+    </main>
+
+    <footer class="main-footer">
+        <div class="container">
+            <div class="footer-grid">
+                <div class="footer-info">
+                    <img src="../images/logo-white.png" alt="شعار المنتجع" class="footer-logo">
+                    <p>منتجع الجولف الفاخر - وجهتك المثالية للاسترخاء والمتعة</p>
+                </div>
+                <div class="footer-links">
+                    <h4>روابط سريعة</h4>
+                    <a href="about.html">عن المنتجع</a>
+                    <a href="facilities.html">المرافق</a>
+                    <a href="packages.html">الحزم والعروض</a>
+                    <a href="contact.html">اتصل بنا</a>
+                </div>
+                <div class="footer-contact">
+                    <h4>تواصل معنا</h4>
+                    <p><i class="fas fa-phone"></i> +966 XX XXX XXXX</p>
+                    <p><i class="fas fa-envelope"></i> info@luxurygolfresort.com</p>
+                    <div class="social-links">
+                        <a href="https://www.facebook.com/luxurygolfresort" target="_blank"><i class="fab fa-facebook"></i></a>
+                        <a href="https://www.instagram.com/luxurygolfresort" target="_blank"><i class="fab fa-instagram"></i></a>
+                        <a href="https://twitter.com/luxurygolfresort" target="_blank"><i class="fab fa-twitter"></i></a>
+                    </div>
+                </div>
+            </div>
+            <div class="footer-bottom">
+                <p>&copy; 2024 منتجع الجولف الفاخر. جميع الحقوق محفوظة</p>
+            </div>
+        </div>
+    </footer>
+
+    <script src="../js/script.js"></script>
+    <script src="../js/gallery.js"></script>
+    <script src="../js/main.js"></script>
+</body>
+</html> 

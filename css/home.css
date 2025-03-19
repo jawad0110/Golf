@@ -1,0 +1,169 @@
+/* Package Cards Styling */
+.packages-preview {
+    padding: 5rem 0;
+    background-color: var(--white);
+}
+
+.packages-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+    gap: 2rem;
+    margin-top: 3rem;
+}
+
+.package-card {
+    background-color: var(--white);
+    border-radius: 10px;
+    overflow: hidden;
+    box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
+    transition: var(--transition);
+    opacity: 0;
+    transform: translateY(20px);
+}
+
+.package-card:hover {
+    transform: translateY(-10px);
+    box-shadow: 0 8px 20px rgba(0, 0, 0, 0.2);
+}
+
+.package-card img {
+    width: 100%;
+    height: 200px;
+    object-fit: cover;
+}
+
+.package-card h3 {
+    color: var(--primary-color);
+    padding: 1.5rem 1.5rem 0.5rem;
+    font-size: 1.5rem;
+}
+
+.package-card p {
+    padding: 0 1.5rem;
+    color: var(--text-color);
+    margin-bottom: 1rem;
+}
+
+.package-price {
+    padding: 0.5rem 1.5rem;
+    font-size: 1.5rem;
+    font-weight: 700;
+    color: var(--secondary-color);
+}
+
+.package-card .btn-book {
+    display: block;
+    margin: 1.5rem;
+    text-align: center;
+}
+
+/* Testimonials Styling */
+.testimonials {
+    padding: 5rem 0;
+    background-color: var(--light-bg);
+}
+
+.testimonials-slider {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+    gap: 2rem;
+    margin-top: 3rem;
+}
+
+.testimonial-card {
+    background-color: var(--white);
+    padding: 2rem;
+    border-radius: 10px;
+    box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
+    transition: var(--transition);
+    opacity: 0;
+    transform: translateY(20px);
+}
+
+.testimonial-card:hover {
+    transform: translateY(-5px);
+}
+
+.rating {
+    color: var(--secondary-color);
+    font-size: 1.2rem;
+    margin-bottom: 1rem;
+}
+
+.comment {
+    font-style: italic;
+    margin-bottom: 1rem;
+    line-height: 1.6;
+}
+
+.name {
+    color: var(--primary-color);
+    font-weight: 700;
+    text-align: left;
+}
+
+/* Header Scroll Effect */
+.main-header.scroll-down {
+    transform: translateY(-100%);
+}
+
+.main-header.scroll-up {
+    transform: translateY(0);
+    box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+}
+
+/* Responsive Design for Homepage */
+@media (max-width: 768px) {
+    .packages-grid,
+    .testimonials-slider {
+        grid-template-columns: 1fr;
+    }
+
+    .package-card,
+    .testimonial-card {
+        max-width: 400px;
+        margin: 0 auto;
+    }
+}
+
+/* Additional Animations */
+.hero-content {
+    animation: fadeIn 1s ease-out forwards;
+}
+
+@keyframes slideIn {
+    from {
+        opacity: 0;
+        transform: translateX(-20px);
+    }
+    to {
+        opacity: 1;
+        transform: translateX(0);
+    }
+}
+
+.feature-card:nth-child(1) { animation-delay: 0.2s; }
+.feature-card:nth-child(2) { animation-delay: 0.4s; }
+.feature-card:nth-child(3) { animation-delay: 0.6s; }
+
+.package-card:nth-child(1) { animation-delay: 0.3s; }
+.package-card:nth-child(2) { animation-delay: 0.6s; }
+.package-card:nth-child(3) { animation-delay: 0.9s; }
+
+/* Custom Scrollbar */
+::-webkit-scrollbar {
+    width: 10px;
+}
+
+::-webkit-scrollbar-track {
+    background: var(--light-bg);
+}
+
+::-webkit-scrollbar-thumb {
+    background: var(--primary-color);
+    border-radius: 5px;
+}
+
+::-webkit-scrollbar-thumb:hover {
+    background: var(--secondary-color);
+} 

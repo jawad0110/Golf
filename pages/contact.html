@@ -1,0 +1,184 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>اتصل بنا | منتجع الجولف الفاخر</title>
+    <link rel="stylesheet" href="../css/style.css">
+    <link rel="stylesheet" href="../css/contact.css">
+    <!-- Font Awesome -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+    <!-- Google Fonts -->
+    <link href="https://fonts.googleapis.com/css2?family=Tajawal:wght@300;400;500;700&display=swap" rel="stylesheet">
+    <!-- Leaflet Map -->
+    <link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css">
+</head>
+<body>
+    <header class="main-header">
+        <nav class="nav-container">
+            <div class="logo">
+                <a href="../index.html">
+                    <img src="../images/logo.png" alt="شعار منتجع الجولف الفاخر">
+                </a>
+            </div>
+            <div class="nav-links">
+                <a href="../index.html">الرئيسية</a>
+                <a href="about.html">عن المنتجع</a>
+                <a href="facilities.html">المرافق</a>
+                <a href="packages.html">الحزم والعروض</a>
+                <a href="booking.html">احجز الآن</a>
+                <a href="gallery.html">معرض الصور</a>
+                <a href="faq.html">الأسئلة الشائعة</a>
+                <a href="contact.html" class="active">اتصل بنا</a>
+            </div>
+            <div class="nav-cta">
+                <a href="booking.html" class="btn-book">احجز الآن</a>
+            </div>
+            <button class="mobile-menu-btn" aria-label="القائمة">☰</button>
+        </nav>
+    </header>
+
+    <main>
+        <section class="page-header">
+            <div class="container">
+                <h1>اتصل بنا</h1>
+                <nav class="breadcrumb">
+                    <a href="../index.html">الرئيسية</a> / 
+                    <span>اتصل بنا</span>
+                </nav>
+            </div>
+        </section>
+
+        <section class="contact-info-section">
+            <div class="container">
+                <div class="info-grid">
+                    <div class="info-card">
+                        <i class="fas fa-map-marker-alt"></i>
+                        <h3>العنوان</h3>
+                        <p>طريق الملك عبدالله، الرياض<br>المملكة العربية السعودية</p>
+                    </div>
+                    <div class="info-card">
+                        <i class="fas fa-phone-alt"></i>
+                        <h3>الهاتف</h3>
+                        <p>+966 XX XXX XXXX<br>+966 XX XXX XXXX</p>
+                    </div>
+                    <div class="info-card">
+                        <i class="fas fa-envelope"></i>
+                        <h3>البريد الإلكتروني</h3>
+                        <p>info@luxurygolfresort.com<br>booking@luxurygolfresort.com</p>
+                    </div>
+                    <div class="info-card">
+                        <i class="fas fa-clock"></i>
+                        <h3>ساعات العمل</h3>
+                        <p>يومياً: 24 ساعة<br>خدمة العملاء: 8 صباحاً - 8 مساءً</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <section class="contact-form-section">
+            <div class="container">
+                <div class="contact-grid">
+                    <div class="contact-form-container">
+                        <h2>أرسل لنا رسالة</h2>
+                        <form id="contactForm" class="contact-form">
+                            <div class="form-group">
+                                <label for="name">الاسم الكامل</label>
+                                <input type="text" id="name" name="name" required>
+                            </div>
+                            <div class="form-row">
+                                <div class="form-group">
+                                    <label for="email">البريد الإلكتروني</label>
+                                    <input type="email" id="email" name="email" required>
+                                </div>
+                                <div class="form-group">
+                                    <label for="phone">رقم الجوال</label>
+                                    <input type="tel" id="phone" name="phone" required>
+                                </div>
+                            </div>
+                            <div class="form-group">
+                                <label for="subject">الموضوع</label>
+                                <select id="subject" name="subject" required>
+                                    <option value="">-- اختر الموضوع --</option>
+                                    <option value="booking">استفسار عن الحجز</option>
+                                    <option value="facilities">استفسار عن المرافق</option>
+                                    <option value="golf">استفسار عن الجولف</option>
+                                    <option value="other">موضوع آخر</option>
+                                </select>
+                            </div>
+                            <div class="form-group">
+                                <label for="message">الرسالة</label>
+                                <textarea id="message" name="message" rows="6" required></textarea>
+                            </div>
+                            <button type="submit" class="btn-submit">إرسال الرسالة</button>
+                        </form>
+                    </div>
+                    <div class="map-container">
+                        <div id="map"></div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <section class="social-section">
+            <div class="container">
+                <h2>تابعنا على وسائل التواصل الاجتماعي</h2>
+                <div class="social-grid">
+                    <a href="https://www.facebook.com/luxurygolfresort" class="social-card facebook" target="_blank">
+                        <i class="fab fa-facebook-f"></i>
+                        <span>Facebook</span>
+                    </a>
+                    <a href="https://www.instagram.com/luxurygolfresort" class="social-card instagram" target="_blank">
+                        <i class="fab fa-instagram"></i>
+                        <span>Instagram</span>
+                    </a>
+                    <a href="https://twitter.com/luxurygolfresort" class="social-card twitter" target="_blank">
+                        <i class="fab fa-twitter"></i>
+                        <span>Twitter</span>
+                    </a>
+                    <a href="https://www.linkedin.com/company/luxurygolfresort" class="social-card linkedin" target="_blank">
+                        <i class="fab fa-linkedin-in"></i>
+                        <span>LinkedIn</span>
+                    </a>
+                </div>
+            </div>
+        </section>
+    </main>
+
+    <footer class="main-footer">
+        <div class="container">
+            <div class="footer-grid">
+                <div class="footer-info">
+                    <img src="../images/logo-white.png" alt="شعار المنتجع" class="footer-logo">
+                    <p>منتجع الجولف الفاخر - وجهتك المثالية للاسترخاء والمتعة</p>
+                </div>
+                <div class="footer-links">
+                    <h4>روابط سريعة</h4>
+                    <a href="about.html">عن المنتجع</a>
+                    <a href="facilities.html">المرافق</a>
+                    <a href="packages.html">الحزم والعروض</a>
+                    <a href="contact.html">اتصل بنا</a>
+                </div>
+                <div class="footer-contact">
+                    <h4>تواصل معنا</h4>
+                    <p><i class="fas fa-phone"></i> +966 XX XXX XXXX</p>
+                    <p><i class="fas fa-envelope"></i> info@luxurygolfresort.com</p>
+                    <div class="social-links">
+                        <a href="https://www.facebook.com/luxurygolfresort" target="_blank"><i class="fab fa-facebook"></i></a>
+                        <a href="https://www.instagram.com/luxurygolfresort" target="_blank"><i class="fab fa-instagram"></i></a>
+                        <a href="https://twitter.com/luxurygolfresort" target="_blank"><i class="fab fa-twitter"></i></a>
+                    </div>
+                </div>
+            </div>
+            <div class="footer-bottom">
+                <p>&copy; 2024 منتجع الجولف الفاخر. جميع الحقوق محفوظة</p>
+            </div>
+        </div>
+    </footer>
+
+    <script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js"></script>
+    <script src="../js/script.js"></script>
+    <script src="../js/main.js"></script>
+    <script src="../js/contact.js"></script>
+</body>
+</html> 
