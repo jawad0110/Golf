@@ -1,8 +1,7 @@
-// Initialize EmailJS
 document.addEventListener('DOMContentLoaded', function() {
-    // Initialize EmailJS first
+    // Initialize EmailJS with new method
     (function() {
-        emailjs.init("EzkV5EcS1oJzaUCT5"); // Remove the object format and just pass the public key directly
+        emailjs.init("EzkV5EcS1oJzaUCT5");
     })();
 
     // Form Validation
@@ -15,11 +14,9 @@ document.addEventListener('DOMContentLoaded', function() {
         return;
     }
 
-    // Remove the onsubmit attribute if it exists
-    form.removeAttribute('onsubmit');
-
     form.addEventListener('submit', function(e) {
         e.preventDefault();
+
         console.log('Form submission started');
         
         let isValid = true;
@@ -63,17 +60,17 @@ document.addEventListener('DOMContentLoaded', function() {
             // Prepare the template parameters
             const templateParams = {
                 to_name: "Resort Team",
-                from_name: form.querySelector('[name="from_name"]').value,
-                from_email: form.querySelector('[name="from_email"]').value,
-                phone: form.querySelector('[name="phone"]').value,
-                subject: form.querySelector('[name="subject"]').value,
-                message: form.querySelector('[name="message"]').value,
-                reply_to: form.querySelector('[name="from_email"]').value
+                from_name: form.name.value,
+                from_email: form.email.value,
+                phone: form.phone.value,
+                subject: form.subject.value,
+                message: form.message.value,
+                reply_to: form.email.value
             };
 
             console.log('Sending email with params:', templateParams);
 
-            // Send email using EmailJS with detailed error handling
+            // Use the updated EmailJS send method
             emailjs.send("service_j29ijnd", "template_wdp7s4r", templateParams)
                 .then(function(response) {
                     console.log('EmailJS SUCCESS:', response);
@@ -109,6 +106,46 @@ document.addEventListener('DOMContentLoaded', function() {
                 });
         }
     });
+
+    // Initialize map
+    const mapElement = document.getElementById('resortMap');
+    if (mapElement) {
+        // Coordinates for Algarve, Portugal
+        const resortLocation = [37.0179, -8.0179]; 
+        
+        // Create map
+        const map = L.map('resortMap').setView(resortLocation, 15);
+        
+        // Add custom styled tiles
+        L.tileLayer('https://{s}.basemaps.cartocdn.com/light_all/{z}/{x}/{y}{r}.png', {
+            attribution: '&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors &copy; <a href="https://carto.com/attributions">CARTO</a>',
+            subdomains: 'abcd',
+            maxZoom: 19
+        }).addTo(map);
+        
+        // Replace the standard marker with a custom one
+        const customIcon = L.icon({
+            iconUrl: '../images/map-marker.png',
+            iconSize: [40, 40],
+            iconAnchor: [20, 40],
+            popupAnchor: [0, -40]
+        });
+
+        const marker = L.marker(resortLocation, {icon: customIcon}).addTo(map);
+        marker.bindPopup('<strong>منتجع الجولف الفاخر</strong><br>الغارفي، البرتغال').openPopup();
+
+        // Add zoom control with custom position
+        L.control.zoom({
+            position: 'bottomright'
+        }).addTo(map);
+
+        // Add scale control
+        L.control.scale({
+            metric: true,
+            imperial: false,
+            position: 'bottomleft'
+        }).addTo(map);
+    }
 });
 
 // Show Error Message
